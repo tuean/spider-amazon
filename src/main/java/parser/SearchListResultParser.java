@@ -55,7 +55,11 @@ public class SearchListResultParser {
                     .build();
 
             if (StringUtils.isNotBlank(commentSize)) {
-                detail.setCommentNum(Integer.parseInt(commentSize.replaceAll(",", "")));
+                try {
+                    detail.setCommentNum(Integer.parseInt(commentSize.replaceAll(",", "")));
+                } catch (Exception var){
+                    var.printStackTrace();
+                }
             }
 
             resultList.add(detail);

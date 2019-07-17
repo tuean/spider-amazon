@@ -57,6 +57,9 @@ public class SerialSpider implements BaseSpider {
                 break;
             }
 
+            // backup the response
+            BackUpResponse.store(key, page, content);
+
             List<ProductDetail> list = SearchListResultParser.parse(content, key);
             if (list.size() < 1) {
                 System.out.println("result list's size is 0");
@@ -71,9 +74,6 @@ public class SerialSpider implements BaseSpider {
             nextPageUrl = NextPageParser.parse(content);
 
             Thread.sleep(1000L);
-
-            // backup the response
-            BackUpResponse.store(key, page, content);
 
             page++;
         }
