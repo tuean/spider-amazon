@@ -25,8 +25,13 @@ public class SerialSpider implements BaseSpider {
 
     private static String nextPageUrl = null;
 
+    private static final Integer advertisementSize = 4;
+    private static final Integer adTryTimes = 6;
+
     public void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
         int page = 1;
+
+        int adFlag = 0;
 
         for (;;) {
             String startUrl = Constants.getRequestUrl(key, page);
@@ -63,6 +68,15 @@ public class SerialSpider implements BaseSpider {
             List<ProductDetail> list = SearchListResultParser.parse(content, key);
             if (list.size() < 1) {
                 System.out.println("result list's size is 0");
+                break;
+            }
+
+            if (list.size() < advertisementSize) {
+                adFlag++;
+            }
+
+            if (adFlag > adTryTimes) {
+                System.out.println("result list is all of advertisement, break");
                 break;
             }
 

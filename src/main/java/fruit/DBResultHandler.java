@@ -32,7 +32,7 @@ public class DBResultHandler implements ResultHandler{
             "asin, product_name, price, commentNum, grade, picUrl, salesNum, productDetailUrl, search_key, id) " +
             "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private String updateSql = "update product set price = ?";
+    private String updateSql = "update product set price = ? where asin = ?";
 
     private String selectSql = "select count(1) from product where asin = ?";
 
@@ -68,6 +68,10 @@ public class DBResultHandler implements ResultHandler{
             } else {
                 // update price
                 // todo
+                PreparedStatement updateSmt = con.prepareStatement(updateSql);
+                updateSmt.setString(1, detail.getPrice());
+                updateSmt.setString(2, detail.getAsin());
+                updateSmt.execute();
             }
 
             PreparedStatement hisInsertSmt = con.prepareStatement(price_histroy_insert_sql);

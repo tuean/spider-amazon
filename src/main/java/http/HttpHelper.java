@@ -86,7 +86,8 @@ public class HttpHelper {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println(get("https://www.amazon.cn/s?k=%E5%86%B0%E7%AE%B1&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss", null));
+//        System.out.println(get("https://www.amazon.cn/s?k=%E5%86%B0%E7%AE%B1&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss", null));
+        System.out.println(get("https://www.amazon.com.au/Hana-Essential-Therapeutic-Aromatherapy-Diffuser/dp/B07GLKB29Z/ref=sr_1_26?__mk_zh_CN=%C3%A4%C2%BA%C2%9A%C3%A9%C2%A9%C2%AC%C3%A9%C2%80%C2%8A%C3%A7%C2%BD%C2%91%C3%A7%C2%AB%C2%99&keywords=Essential+oil+aromatherapy&qid=1566397356&s=gateway&sr=8-26", null));
     }
 
 }

@@ -5,7 +5,8 @@ import java.nio.charset.StandardCharsets;
 
 public class Constants {
 
-    public static String baseHost = "https://www.amazon.com";
+//    public static String baseHost = "https://www.amazon.com";
+    public static String baseHost = "https://www.amazon.com.au";
 
     private static String searchUrl = baseHost + "/s?k=%s&lo=grid&__mk_zh_CN=亚马逊网站";
 

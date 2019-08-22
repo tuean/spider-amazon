@@ -34,7 +34,8 @@ public class SearchListResultParser {
         Elements nodes = doc.select("div.s-search-results");
 
         if (nodes.isEmpty()) {
-            throw new BusinessException("can't find result dom");
+            return new ArrayList<>(0);
+//            throw new BusinessException("can't find result dom");
         }
 
         for (Element node : nodes.get(0).children()) {
@@ -44,6 +45,10 @@ public class SearchListResultParser {
             String commentSize = node.select("a.a-link-normal").select("span.a-size-base").text().replace("更多购买选择", "").trim();
             String price = node.select("span.a-offscreen").text().trim();
             String link = node.select("a.a-link-normal").attr("href").trim();
+            if (StringUtils.isBlank(price)) {
+                price = node.select("div.a-color-secondary").select("div > span.a-color-base").text().trim();
+                System.out.println(price);
+            }
 
             ProductDetail detail = ProductDetail.builder()
                     .asin(asin)

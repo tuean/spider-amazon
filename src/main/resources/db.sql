@@ -10,6 +10,8 @@ CREATE TABLE `amazon`.`product` (
   `productDetailUrl` VARCHAR(300) NULL,
   PRIMARY KEY (`id`));
 
+  alter table `product` modify column product_name varchar(1000) null;
+
 
 CREATE TABLE `amazon`.`price_history` (
   `id` INT UNSIGNED NOT NULL,
