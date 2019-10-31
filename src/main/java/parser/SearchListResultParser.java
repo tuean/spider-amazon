@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import settings.Constants;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static settings.Constants.baseHost;
 
 public class SearchListResultParser {
 
@@ -47,13 +47,13 @@ public class SearchListResultParser {
             String link = node.select("a.a-link-normal").attr("href").trim();
             if (StringUtils.isBlank(price)) {
                 price = node.select("div.a-color-secondary").select("div > span.a-color-base").text().trim();
-                System.out.println(price);
+//                System.out.println(price);
             }
 
             ProductDetail detail = ProductDetail.builder()
                     .asin(asin)
                     .productName(productName)
-                    .productDetailUrl(baseHost + link)
+                    .productDetailUrl(Constants.getBaseHost() + link)
                     .grade(grade)
                     .price(price)
                     .searchKey(searchKey)

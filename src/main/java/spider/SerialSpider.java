@@ -4,6 +4,7 @@ import backup.BackUpResponse;
 import exception.BusinessException;
 import fruit.ResultHandler;
 import http.HttpHelper;
+import logger.MineLogger;
 import org.apache.commons.lang.StringUtils;
 import parser.NextPageParser;
 import parser.ProductDetail;
@@ -15,9 +16,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
-import static settings.Constants.baseHost;
 
 public class SerialSpider implements BaseSpider {
 
@@ -25,7 +24,7 @@ public class SerialSpider implements BaseSpider {
 
     private static String nextPageUrl = null;
 
-    private static final Integer advertisementSize = 4;
+    private static final Integer advertisementSize = 6;
     private static final Integer adTryTimes = 6;
 
     public void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
@@ -37,9 +36,12 @@ public class SerialSpider implements BaseSpider {
             String startUrl = Constants.getRequestUrl(key, page);
             startUrl = nextPageUrl == null ? startUrl : nextPageUrl;
 
+            MineLogger.log("instant page: " + page);
+            MineLogger.log("startUrl: " + startUrl);
+
             Map<String, String> headers = new HashMap<>();
-            headers.put("Host", baseHost);
-            headers.put("Referer", lastPageUrl == null ? baseHost : lastPageUrl);
+            headers.put("Host", Constants.getBaseHost());
+            headers.put("Referer", lastPageUrl == null ? Constants.getBaseHost() : lastPageUrl);
             headers.put("Upgrade-Insecure-Requests", "1");
             headers.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             headers.put("Accept-Encoding", "gzip, deflate, br");
@@ -47,18 +49,21 @@ public class SerialSpider implements BaseSpider {
             headers.put("Connection", "keep-alive");
 
 
-
             String content = null;
+            MineLogger.log("request start");
             try {
                 content = HttpHelper.get(startUrl, headers);
             } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("catch error while visit this page: " + page);
+                MineLogger.log("request catch error while visit this page:" + page);
+                MineLogger.log("urk: " + startUrl);
+                MineLogger.log(e);
                 break;
+            } finally {
+                MineLogger.log("request finished");
             }
 
             if (StringUtils.isBlank(content)) {
-                System.out.println("get empty page at page: " + page);
+                MineLogger.log("get empty page at page: " + page);
                 break;
             }
 
@@ -67,7 +72,7 @@ public class SerialSpider implements BaseSpider {
 
             List<ProductDetail> list = SearchListResultParser.parse(content, key);
             if (list.size() < 1) {
-                System.out.println("result list's size is 0");
+                MineLogger.log("result list's size is 0");
                 break;
             }
 
@@ -76,13 +81,13 @@ public class SerialSpider implements BaseSpider {
             }
 
             if (adFlag > adTryTimes) {
-                System.out.println("result list is all of advertisement, break");
+                MineLogger.log("result list is all of advertisement, break");
                 break;
             }
 
             resultHandler.handleResult(list);
 
-            System.out.println("page " + page + " finished, size: " + list.size());
+            MineLogger.log("page " + page + " finished, size: " + list.size());
 
             lastPageUrl = startUrl;
             nextPageUrl = NextPageParser.parse(content);
