@@ -2,6 +2,7 @@ package starter;
 
 import enums.ResultType;
 import fruit.DBResultHandler;
+import fruit.ExcelResultHandler;
 import fruit.ResultHandler;
 import logger.MineLogger;
 import org.apache.commons.lang.StringUtils;
@@ -36,9 +37,7 @@ public class Starter {
 
 
         BaseSpider spider = new SerialSpider();
-
-
-        ResultHandler resultHandler = new DBResultHandler();
+        ResultHandler resultHandler = ResultHandler.getByType(resultType);
 
         for (String k : keys) {
             try {

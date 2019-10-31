@@ -10,6 +10,7 @@ public class DBResultHandler implements ResultHandler{
 
     private static Connection con;
 
+    @Override
     public void init() throws ClassNotFoundException {
         System.out.println("Connecting database...");
 
@@ -36,6 +37,7 @@ public class DBResultHandler implements ResultHandler{
 
     private String selectSql = "select count(1) from product where asin = ?";
 
+    @Override
     public void handleResult(List<ProductDetail> list) throws ClassNotFoundException, SQLException {
         if (con == null) {
             init();
@@ -83,6 +85,11 @@ public class DBResultHandler implements ResultHandler{
             hisInsertSmt.setInt(4, 0);
             hisInsertSmt.execute();
         }
+    }
+
+    @Override
+    public void finish() {
+
     }
 
     private String price_histroy_insert_sql = "insert into price_history(asin, price, create_at, id) values(?, ?, ?, ?)";

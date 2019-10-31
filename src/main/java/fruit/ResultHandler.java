@@ -1,5 +1,6 @@
 package fruit;
 
+import enums.ResultType;
 import parser.ProductDetail;
 
 import java.sql.SQLException;
@@ -11,4 +12,15 @@ public interface ResultHandler {
 
     void handleResult(List<ProductDetail> list) throws ClassNotFoundException, SQLException;
 
+    void finish();
+
+    static ResultHandler getByType(ResultType resultType) {
+        switch (resultType) {
+            case db:
+                return new DBResultHandler();
+            case excel:
+                return new ExcelResultHandler();
+        }
+        return null;
+    }
 }

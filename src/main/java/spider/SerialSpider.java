@@ -28,6 +28,8 @@ public class SerialSpider implements BaseSpider {
     private static final Integer adTryTimes = 6;
 
     public void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
+        resultHandler.init();
+
         int page = 1;
 
         int adFlag = 0;
@@ -98,6 +100,6 @@ public class SerialSpider implements BaseSpider {
         }
 
 
-
+        resultHandler.finish();
     }
 }
