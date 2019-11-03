@@ -35,15 +35,15 @@ public class SerialSpider implements BaseSpider {
         int adFlag = 0;
 
         for (;;) {
-            String startUrl = Constants.getRequestUrl(key, page);
+            String startUrl = Constants.globalConfig.getRequestUrl(key, page);
             startUrl = nextPageUrl == null ? startUrl : nextPageUrl;
 
             MineLogger.log("instant page: " + page);
             MineLogger.log("startUrl: " + startUrl);
 
             Map<String, String> headers = new HashMap<>();
-            headers.put("Host", Constants.getBaseHost());
-            headers.put("Referer", lastPageUrl == null ? Constants.getBaseHost() : lastPageUrl);
+            headers.put("Host", Constants.globalConfig.getBaseHost());
+            headers.put("Referer", lastPageUrl == null ? Constants.globalConfig.getBaseHost() : lastPageUrl);
             headers.put("Upgrade-Insecure-Requests", "1");
             headers.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             headers.put("Accept-Encoding", "gzip, deflate, br");

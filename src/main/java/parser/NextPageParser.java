@@ -20,7 +20,7 @@ public class NextPageParser {
         Elements elements = doc.select("li.a-last > a");
 
         if (!elements.isEmpty()) {
-            return Constants.getBaseHost() + elements.get(0).attr("href");
+            return Constants.globalConfig.getBaseHost() + elements.get(0).attr("href");
         }
 
         MineLogger.log("elements is empty");

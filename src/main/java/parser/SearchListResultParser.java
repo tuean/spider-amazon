@@ -53,7 +53,7 @@ public class SearchListResultParser {
             ProductDetail detail = ProductDetail.builder()
                     .asin(asin)
                     .productName(productName)
-                    .productDetailUrl(Constants.getBaseHost() + link)
+                    .productDetailUrl(Constants.globalConfig.getBaseHost() + link)
                     .grade(grade)
                     .price(price)
                     .searchKey(searchKey)
