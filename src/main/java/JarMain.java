@@ -17,6 +17,7 @@ public class JarMain {
         options.addOption("d", "database path", true, "the path of database e.g. jdbc:mysql://xxxxxxxx");
         options.addOption("u", "user", true, "mysql user, valid when t is db");
         options.addOption("p", "password", true, "mysql password, valid when t is db");
+        options.addOption("hs", "html save flag", false, "add this to store response html");
 
 
         CommandLineParser parser = new DefaultParser();
@@ -38,6 +39,12 @@ public class JarMain {
 
         if (!cmdLine.hasOption("k")) {
             throw new IllegalArgumentException("lack of param");
+        }
+
+        if (cmdLine.hasOption("hs")) {
+            Constants.globalConfig.setHtmlSave(true);
+        } else {
+            Constants.globalConfig.setHtmlSave(false);
         }
 
         String key = cmdLine.getOptionValue("k");

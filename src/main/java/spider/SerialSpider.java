@@ -71,7 +71,9 @@ public class SerialSpider implements BaseSpider {
             }
 
             // backup the response
-            BackUpResponse.store(key, page, content);
+            if (Constants.globalConfig.isHtmlSave()) {
+                BackUpResponse.store(key, page, content);
+            }
 
             List<ProductDetail> list = SearchListResultParser.parse(content, key);
             if (list.size() < 1) {

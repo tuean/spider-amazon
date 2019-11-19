@@ -38,6 +38,8 @@ public class GlobalConfig {
 
     private String excelFileName;
 
+    private boolean htmlSave;
+
 
     public static String baseHost_default = "https://www.amazon.com.au";
 
@@ -157,6 +159,14 @@ public class GlobalConfig {
         }
 
         return format;
+    }
+
+    public boolean isHtmlSave() {
+        return htmlSave;
+    }
+
+    public void setHtmlSave(boolean htmlSave) {
+        this.htmlSave = htmlSave;
     }
 
     public String getRequestUrl(String key) {
