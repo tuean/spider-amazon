@@ -15,6 +15,10 @@ we now can get:
 
 #### v0.0.2
 provide jar file
+provides the ability to output to a excel file
+
+#### problems
+can't parse keys with blanks
 
 
 #### result
