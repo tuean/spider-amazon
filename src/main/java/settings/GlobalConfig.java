@@ -1,12 +1,15 @@
 package settings;
 
 import enums.ResultType;
+import logger.MineLogger;
 import lombok.*;
 import util.FileUtil;
 
 import java.io.File;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
+import java.rmi.AccessException;
 
 @Builder
 @AllArgsConstructor
@@ -33,8 +36,14 @@ public class GlobalConfig {
 
     private String password;
 
+    private String excelFileName;
+
 
     public static String baseHost_default = "https://www.amazon.com.au";
+
+    public static String outPath_default = "/tmp/";
+
+    public static String excelFileName_default = "result.xlsx";
 
     private static String pageEnd = "&page=";
 
@@ -92,7 +101,19 @@ public class GlobalConfig {
         return outPath == null ?  defaultPath: outPath;
     }
 
-    public void setOutPath(String outPath) {
+    public void setOutPath(String outPath) throws AccessDeniedException {
+        try {
+            File file = new File(outPath);
+            if (!file.canRead() || !file.canWrite()) {
+                MineLogger.log("this outPath has no access");
+                throw new AccessDeniedException("this outPath has no access");
+            }
+            System.out.println(file);
+        } catch (Exception var) {
+            MineLogger.log("this outPath is unreachable");
+            throw new AccessDeniedException("this outPath is unreachable");
+        }
+
         this.outPath = outPath;
     }
 
@@ -120,10 +141,17 @@ public class GlobalConfig {
         this.password = password;
     }
 
+    public String getExcelFileName() {
+        return excelFileName == null ? excelFileName_default : excelFileName;
+    }
+
+    public void setExcelFileName(String excelFileName) {
+        this.excelFileName = excelFileName;
+    }
 
     public String getRequestUrl(String key, int page) {
         key = URLEncoder.encode(key, StandardCharsets.UTF_8);
-        String format = String.format(searchUrl, key);
+        String format = String.format(getSearchUrl(), key);
         if (page > 1) {
             format += pageEnd + page;
         }
@@ -134,4 +162,5 @@ public class GlobalConfig {
     public String getRequestUrl(String key) {
         return getRequestUrl(key, 1);
     }
+
 }
