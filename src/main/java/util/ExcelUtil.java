@@ -2,12 +2,9 @@ package util;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.metadata.Sheet;
-import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import logger.MineLogger;
 
-import java.io.FileOutputStream;
 import java.util.List;
 
 public class ExcelUtil {

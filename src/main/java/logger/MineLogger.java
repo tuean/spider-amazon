@@ -18,7 +18,8 @@ public class MineLogger {
     }
 
     public static void log(Object log) {
-        System.out.print(String.format(getInstant() + JSONObject.toJSONString(log)));
+        String text = getInstant() + JSONObject.toJSONString(log);
+        System.out.println(text);
     }
 
 
