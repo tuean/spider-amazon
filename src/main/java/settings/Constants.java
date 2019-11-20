@@ -14,6 +14,7 @@ public class Constants {
     public static void init() throws AccessDeniedException {
         globalConfig.setBaseHost(GlobalConfig.baseHost_default);
         globalConfig.setOutPath(GlobalConfig.outPath_default);
+        globalConfig.setHtmlSave(true);
     }
 
 

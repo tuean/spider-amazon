@@ -10,7 +10,7 @@ public class AppMain {
 
     public static void main(String[] args) throws ParseException, AccessDeniedException {
 
-        String key = "essential oil";
+        String key = "Sealant";
         String separator = ",";
         ResultType resultType = ResultType.excel;
 
