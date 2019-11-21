@@ -1,12 +1,15 @@
+import entity.SearchContainer;
 import enums.ResultType;
 import org.apache.commons.cli.*;
 import settings.Constants;
 import starter.Starter;
 
+import java.nio.file.AccessDeniedException;
+
 
 public class JarMain {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, AccessDeniedException {
         Options options = new Options();
         options.addOption("k", "key", true, "search key or keys");
         options.addOption("s", "separator", true, "separator of keys, ignore this when only one key");
@@ -71,6 +74,11 @@ public class JarMain {
             Constants.globalConfig.setPassword(password);
         }
 
-        Starter.run(key, separator, resultType);
+        SearchContainer searchContainer = new SearchContainer();
+        searchContainer.setKey(key);
+        searchContainer.setSeparator(separator);
+        searchContainer.setResultType(resultType);
+
+        Starter.run(searchContainer);
     }
 }

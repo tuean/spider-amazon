@@ -10,6 +10,8 @@ public interface ResultHandler {
 
     void init() throws ClassNotFoundException;
 
+    void init(boolean needClear) throws ClassNotFoundException;
+
     void handleResult(List<ProductDetail> list) throws ClassNotFoundException, SQLException;
 
     void finish();
@@ -20,7 +22,8 @@ public interface ResultHandler {
                 return new DBResultHandler();
             case excel:
                 return new ExcelResultHandler();
+            default:
+                return new ExcelResultHandler();
         }
-        return null;
     }
 }

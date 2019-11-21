@@ -10,6 +10,7 @@ import parser.NextPageParser;
 import parser.ProductDetail;
 import parser.SearchListResultParser;
 import settings.Constants;
+import settings.GlobalConfig;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,8 +29,8 @@ public class SerialSpider implements BaseSpider {
     private static final Integer adTryTimes = 6;
 
     @Override
-    public void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
-        resultHandler.init();
+    public void start(String key, ResultHandler resultHandler, GlobalConfig config)
+            throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
 
         int page = 1;
 
@@ -101,8 +102,5 @@ public class SerialSpider implements BaseSpider {
 
             page++;
         }
-
-
-        resultHandler.finish();
     }
 }

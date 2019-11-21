@@ -29,6 +29,13 @@ public class DBResultHandler implements ResultHandler{
         }
     }
 
+    @Override
+    public void init(boolean needClear) throws ClassNotFoundException {
+        init();
+    }
+
+
+
     private String insertSql = "insert into product(" +
             "asin, product_name, price, commentNum, grade, picUrl, salesNum, productDetailUrl, search_key, id) " +
             "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

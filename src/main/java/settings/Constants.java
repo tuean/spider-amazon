@@ -11,10 +11,11 @@ public class Constants {
 
     public static GlobalConfig globalConfig = new GlobalConfig();
 
-    public static void init() throws AccessDeniedException {
+    public static GlobalConfig init() throws AccessDeniedException {
         globalConfig.setBaseHost(GlobalConfig.baseHost_default);
         globalConfig.setOutPath(GlobalConfig.outPath_default);
         globalConfig.setHtmlSave(true);
+        return globalConfig;
     }
 
 

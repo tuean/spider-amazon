@@ -26,4 +26,7 @@ public enum AmazonType {
     }
 
 
+    public static String get(AmazonType type) {
+        return map.get(type);
+    }
 }

@@ -19,10 +19,18 @@ public class ExcelResultHandler implements ResultHandler {
 
     @Override
     public void init() throws ClassNotFoundException {
+        init(false);
+    }
+
+    @Override
+    public void init(boolean needClear) {
         if (data == null) {
             data = new LinkedList<>();
-        } else {
+        } else if (needClear){
             data.clear();
+        } else {
+            // nothing to do
+            // keep the data
         }
     }
 
