@@ -29,7 +29,7 @@ public class SerialSpider implements BaseSpider {
     private static final Integer adTryTimes = 6;
 
     @Override
-    public void start(String key, ResultHandler resultHandler, GlobalConfig config)
+    public void start(String key, ResultHandler resultHandler)
             throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
 
         int page = 1;

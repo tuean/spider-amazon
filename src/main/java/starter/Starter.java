@@ -54,7 +54,8 @@ public class Starter {
             for (GlobalConfig config : container.getConfigList()) {
                 try {
                     resultHandler.init(container.isInitFlag());
-                    spider.start(k, resultHandler, config);
+                    Constants.globalConfig = config;
+                    spider.start(k, resultHandler);
                 } catch (Exception var) {
                     MineLogger.log(var);
                 }

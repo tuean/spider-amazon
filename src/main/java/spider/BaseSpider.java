@@ -8,6 +8,6 @@ import java.sql.SQLException;
 
 public interface BaseSpider {
 
-    void start(String key, ResultHandler resultHandler, GlobalConfig config) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException;
+    void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException;
 
 }

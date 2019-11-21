@@ -1,5 +1,6 @@
 package fruit;
 
+import enums.AmazonType;
 import logger.MineLogger;
 import parser.ProductDetail;
 import settings.Constants;
@@ -67,7 +68,7 @@ public class ExcelResultHandler implements ResultHandler {
         String outPath = Constants.globalConfig.getOutPath();
         File out = new File(outPath);
         if (out.isDirectory()) {
-            outPath = outPath + File.separator + Constants.globalConfig.getExcelFileName();
+            outPath = outPath + File.separator + Constants.globalConfig.getKey() + "-" + AmazonType.get(Constants.globalConfig.getBaseHost());
         }
 
         ExcelUtil.writeToXlsx(outPath, data, ProductDetail.class);
