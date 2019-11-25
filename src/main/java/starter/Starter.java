@@ -55,6 +55,8 @@ public class Starter {
                 try {
                     resultHandler.init(container.isInitFlag());
                     Constants.globalConfig = config;
+                    Constants.globalConfig.setKey(key);
+                    Constants.globalConfig.setSeparator(separator);
                     spider.start(k, resultHandler);
                 } catch (Exception var) {
                     MineLogger.log(var);

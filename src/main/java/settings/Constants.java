@@ -9,6 +9,11 @@ public class Constants {
 //    public static String baseHost_default = "https://www.amazon.com";
 
 
+    public static final String EXCEL = ".xlsx";
+
+    public static final String HTML = ".html";
+
+
     public static GlobalConfig globalConfig = new GlobalConfig();
 
     public static GlobalConfig init() throws AccessDeniedException {

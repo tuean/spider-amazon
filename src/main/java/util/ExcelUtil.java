@@ -17,6 +17,7 @@ public class ExcelUtil {
             excelWriter = EasyExcel.write(fileName, clazz).build();
             WriteSheet writeSheet = EasyExcel.writerSheet("模板").build();
             excelWriter.write(data, writeSheet);
+            MineLogger.log("fruit path: " + fileName);
         } catch (Exception var) {
             MineLogger.log("write to excel error");
             MineLogger.log(var);

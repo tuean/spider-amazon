@@ -1,5 +1,7 @@
 package backup;
 
+import settings.Constants;
+
 import java.io.File;
 import java.io.FileWriter;
 
@@ -12,12 +14,14 @@ public class BackUpResponse {
 
         String keyFolder = baseFolder + File.separator + searchKey;
 
+        keyFolder = keyFolder + File.separator + Constants.globalConfig.getBaseHost() + File.separator;
+
         File fileFolder = new File(keyFolder);
         if (!fileFolder.exists()) {
-            fileFolder.mkdir();
+            fileFolder.mkdirs();
         }
 
-        String finalFilePath = keyFolder + File.separator + page + ".html";
+        String finalFilePath = keyFolder + File.separator + page + Constants.HTML;
         try {
             FileWriter fw = new FileWriter(finalFilePath);
             fw.write(content);

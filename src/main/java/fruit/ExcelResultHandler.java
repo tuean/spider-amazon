@@ -68,7 +68,7 @@ public class ExcelResultHandler implements ResultHandler {
         String outPath = Constants.globalConfig.getOutPath();
         File out = new File(outPath);
         if (out.isDirectory()) {
-            outPath = outPath + File.separator + Constants.globalConfig.getKey() + "-" + AmazonType.get(Constants.globalConfig.getBaseHost());
+            outPath = outPath + File.separator + Constants.globalConfig.getKey() + "-" + AmazonType.get(Constants.globalConfig.getBaseHost()) + Constants.EXCEL;
         }
 
         ExcelUtil.writeToXlsx(outPath, data, ProductDetail.class);
