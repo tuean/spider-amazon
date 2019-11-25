@@ -26,6 +26,7 @@ public class SerialSpider implements BaseSpider {
 
     private static final Integer advertisementSize = 6;
     private static final Integer adTryTimes = 6;
+    private static final Integer emptyCheckSize = 4;
 
     @Override
     public void start(String key, ResultHandler resultHandler)
@@ -34,9 +35,20 @@ public class SerialSpider implements BaseSpider {
         int page = 1;
 
         int adFlag = 0;
+        int emptyFlag = 0;
 
         for (;;) {
             String startUrl = Constants.globalConfig.getRequestUrl(key, page);
+            if (nextPageUrl == null) {
+                emptyFlag++;
+            } else {
+                emptyFlag = emptyFlag / 2 + 1;
+            }
+            if (emptyFlag > emptyCheckSize) {
+                MineLogger.log("empty break");
+                break;
+            }
+
             startUrl = nextPageUrl == null ? startUrl : nextPageUrl;
 
             MineLogger.log("instant page: " + page);

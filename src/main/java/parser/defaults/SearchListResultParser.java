@@ -43,13 +43,11 @@ public class SearchListResultParser {
             String asin = node.attr("data-asin").trim();
             String productName = node.select("span.a-text-normal").text().trim();
             String grade = node.select("span.a-icon-alt").text().trim();
-            String commentSize = "";
-            Elements cs = node.select("a.a-link-normal").select("span.a-size-base");
-            if (cs.first() != null) {
-                commentSize = cs.first().text().replace("更多购买选择", "").trim();
-            } else {
-                commentSize = cs.text().replace("更多购买选择", "").trim();
-            }
+            String commentSize = node.select("a.a-link-normal").select("span.a-size-base").text()
+                    .replace("更多购买选择", "")
+                    .replaceAll("\\(.*?\\)", "")
+                    .trim();
+
             String price = node.select("span.a-offscreen").text().trim();
             String link = node.select("a.a-link-normal").attr("href").trim();
             if (StringUtils.isBlank(price)) {
@@ -80,6 +78,11 @@ public class SearchListResultParser {
         return resultList;
     }
 
+
+    public static void main(String[] args) {
+        String source = "60 (US$29.38/Fl Oz)";
+        System.out.println(source.replaceAll("\\(.*?\\)", ""));
+    }
 
 
 
