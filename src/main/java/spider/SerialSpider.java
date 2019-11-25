@@ -6,11 +6,10 @@ import fruit.ResultHandler;
 import http.HttpHelper;
 import logger.MineLogger;
 import org.apache.commons.lang.StringUtils;
-import parser.NextPageParser;
+import parser.defaults.NextPageParser;
 import parser.ProductDetail;
-import parser.SearchListResultParser;
+import parser.defaults.SearchListResultParser;
 import settings.Constants;
-import settings.GlobalConfig;
 
 import java.io.IOException;
 import java.sql.SQLException;

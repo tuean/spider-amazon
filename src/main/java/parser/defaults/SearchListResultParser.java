@@ -1,4 +1,4 @@
-package parser;
+package parser.defaults;
 
 import com.alibaba.fastjson.JSON;
 import exception.BusinessException;
@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import parser.ProductDetail;
 import settings.Constants;
 
 import java.io.File;
@@ -73,16 +74,6 @@ public class SearchListResultParser {
         return resultList;
     }
 
-
-    public static void main(String[] args) throws IOException, BusinessException {
-        ClassLoader classLoader = SearchListResultParser.class.getClassLoader();
-        File file = new File(classLoader.getResource("example.txt").getFile());
-
-        String content = new String(Files.readAllBytes(file.toPath()));
-
-        List list = SearchListResultParser.parse(content, "text");
-        System.out.println(JSON.toJSONString(list));
-    }
 
 
 

@@ -15,14 +15,14 @@ public class AppMain {
 
     public static void main(String[] args) throws ParseException, AccessDeniedException {
 
-        String key = "Reed Diffuser Sets";
+        String key = "Sealant";
         String separator = ",";
         ResultType resultType = ResultType.excel;
 
 
         List<GlobalConfig> configList = new LinkedList<>();
         GlobalConfig config = Constants.init();
-        config.setBaseHost(AmazonType.get(AmazonType.American));
+        config.setBaseHost(AmazonType.get(AmazonType.Australia));
         configList.add(config);
 
         SearchContainer searchContainer = new SearchContainer();
