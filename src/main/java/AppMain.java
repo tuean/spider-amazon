@@ -22,7 +22,8 @@ public class AppMain {
 
         List<GlobalConfig> configList = new LinkedList<>();
         GlobalConfig config = Constants.init();
-        config.setBaseHost(AmazonType.get(AmazonType.Australia));
+//        config.setBaseHost(AmazonType.get(AmazonType.Australia));
+        config.setBaseHost(AmazonType.get(AmazonType.England));
         configList.add(config);
 
         SearchContainer searchContainer = new SearchContainer();
