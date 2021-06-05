@@ -47,3 +47,6 @@ usage: help [-h] [-k <arg>] [-o <arg>] [-p <arg>] [-r <arg>] [-s <arg>] [-t <arg
  -u,--user <arg>          mysql user, valid when t is db
 ```
 4. if use db, you should run the **/resources/db.sql**
+
+#### branch dev-baidu
+provider spider for baidu search
