@@ -2,15 +2,12 @@ package fruit;
 
 import enums.AmazonType;
 import logger.MineLogger;
-import parser.ProductDetail;
+import model.ProductDetail;
 import settings.Constants;
 import util.ExcelUtil;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

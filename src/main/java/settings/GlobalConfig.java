@@ -1,11 +1,15 @@
 package settings;
 
+import enums.AmazonType;
+import enums.BaiduType;
 import enums.ResultType;
+import enums.SourceEnum;
 import logger.MineLogger;
 import lombok.*;
 import util.FileUtil;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.AccessDeniedException;
@@ -40,6 +44,8 @@ public class GlobalConfig {
 
     private boolean htmlSave;
 
+    private SourceEnum sourceEnum;
+
 
     public static String baseHost_default = "https://www.amazon.com.au";
 
@@ -58,7 +64,11 @@ public class GlobalConfig {
     }
 
     public String getSearchUrl() {
-        return getBaseHost() + "/s?k=%s&lo=grid&__mk_zh_CN=亚马逊网站";
+        switch (sourceEnum) {
+            case Amazon: return getBaseHost() + AmazonType.getSearchUrl();
+            case Baidu: return getBaseHost() + BaiduType.getRequestUrl();
+            default: return null;
+        }
     }
 
     public void setSearchUrl(String searchUrl) {
@@ -151,8 +161,9 @@ public class GlobalConfig {
         this.excelFileName = excelFileName;
     }
 
-    public String getRequestUrl(String key, int page) {
-        key = URLEncoder.encode(key, StandardCharsets.UTF_8);
+    public String getRequestUrl(String key, int page) throws UnsupportedEncodingException {
+//        key = URLEncoder.encode(key, StandardCharsets.UTF_8);
+        key = URLEncoder.encode(key, "utf-8");
         String format = String.format(getSearchUrl(), key);
         if (page > 1) {
             format += pageEnd + page;
@@ -169,8 +180,16 @@ public class GlobalConfig {
         this.htmlSave = htmlSave;
     }
 
-    public String getRequestUrl(String key) {
+    public String getRequestUrl(String key) throws UnsupportedEncodingException {
         return getRequestUrl(key, 1);
     }
 
+
+    public SourceEnum getSourceEnum() {
+        return sourceEnum;
+    }
+
+    public void setSourceEnum(SourceEnum sourceEnum) {
+        this.sourceEnum = sourceEnum;
+    }
 }

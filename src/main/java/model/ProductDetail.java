@@ -1,4 +1,4 @@
-package parser;
+package model;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;

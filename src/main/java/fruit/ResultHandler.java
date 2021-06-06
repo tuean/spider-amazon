@@ -1,7 +1,7 @@
 package fruit;
 
 import enums.ResultType;
-import parser.ProductDetail;
+import model.ProductDetail;
 
 import java.sql.SQLException;
 import java.util.List;

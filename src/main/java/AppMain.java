@@ -1,6 +1,8 @@
 import entity.SearchContainer;
 import enums.AmazonType;
+import enums.BaiduType;
 import enums.ResultType;
+import enums.SourceEnum;
 import org.apache.commons.cli.*;
 import settings.Constants;
 import settings.GlobalConfig;
@@ -22,9 +24,11 @@ public class AppMain {
 
         List<GlobalConfig> configList = new LinkedList<>();
         GlobalConfig config = Constants.init();
-        config.setBaseHost(AmazonType.get(AmazonType.Australia));
+//        config.setBaseHost(AmazonType.get(AmazonType.Australia));
 //        config.setBaseHost(AmazonType.get(AmazonType.England));
 //        config.setBaseHost(AmazonType.get(AmazonType.American));
+        config.setBaseHost(BaiduType.get(BaiduType.GLOBAL));
+        config.setSourceEnum(SourceEnum.Baidu);
         configList.add(config);
 
         SearchContainer searchContainer = new SearchContainer();

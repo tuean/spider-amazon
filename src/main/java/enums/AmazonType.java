@@ -42,4 +42,8 @@ public enum AmazonType {
         return null;
     }
 
+    public static String getSearchUrl() {
+        return "/s?k=%s&lo=grid&__mk_zh_CN=亚马逊网站";
+    }
+
 }

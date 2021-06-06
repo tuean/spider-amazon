@@ -1,29 +1,27 @@
 package parser.defaults;
 
-import com.alibaba.fastjson.JSON;
 import exception.BusinessException;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parser.ProductDetail;
+import model.ProductDetail;
+import parser.ResultParser;
 import settings.Constants;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 
-public class SearchListResultParser {
+public class AmazonSearchListResultParser implements ResultParser {
 
 
     private static Pattern pp_goods = Pattern.compile("http://www(.+?)/dp/(.+)");
 
-    public static List<ProductDetail> parse(String content, String searchKey) throws BusinessException {
+    @Override
+    public List<ProductDetail> parse(String content, String searchKey) throws BusinessException {
         if (StringUtils.isBlank(content)) {
             throw new BusinessException("web page result is empty");
         }

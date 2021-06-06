@@ -7,11 +7,12 @@ import http.HttpHelper;
 import logger.MineLogger;
 import org.apache.commons.lang.StringUtils;
 import parser.defaults.NextPageParser;
-import parser.ProductDetail;
-import parser.defaults.SearchListResultParser;
+import model.ProductDetail;
+import parser.defaults.AmazonSearchListResultParser;
 import settings.Constants;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class SerialSpider implements BaseSpider {
 
     @Override
     public void start(String key, ResultHandler resultHandler)
-            throws BusinessException, SQLException, ClassNotFoundException, InterruptedException {
+            throws BusinessException, SQLException, ClassNotFoundException, InterruptedException, UnsupportedEncodingException {
 
         int page = 1;
 
@@ -87,7 +88,8 @@ public class SerialSpider implements BaseSpider {
                 BackUpResponse.store(key, page, content);
             }
 
-            List<ProductDetail> list = SearchListResultParser.parse(content, key);
+            AmazonSearchListResultParser resultParser = new AmazonSearchListResultParser();
+            List<ProductDetail> list = resultParser.parse(content, key);
             if (list.size() < 1) {
                 MineLogger.log("result list's size is 0");
                 break;

@@ -4,10 +4,11 @@ import exception.BusinessException;
 import fruit.ResultHandler;
 import settings.GlobalConfig;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public interface BaseSpider {
 
-    void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException;
+    void start(String key, ResultHandler resultHandler) throws BusinessException, SQLException, ClassNotFoundException, InterruptedException, UnsupportedEncodingException;
 
 }

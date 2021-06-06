@@ -1,6 +1,6 @@
 package fruit;
 
-import parser.ProductDetail;
+import model.ProductDetail;
 
 import java.sql.*;
 import java.util.Calendar;

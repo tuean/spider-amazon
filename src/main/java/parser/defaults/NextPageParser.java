@@ -28,7 +28,7 @@ public class NextPageParser {
 
 
     public static void main(String[] args) throws IOException, BusinessException {
-        ClassLoader classLoader = SearchListResultParser.class.getClassLoader();
+        ClassLoader classLoader = AmazonSearchListResultParser.class.getClassLoader();
         File file = new File(classLoader.getResource("example.txt").getFile());
 
         String content = new String(Files.readAllBytes(file.toPath()));
